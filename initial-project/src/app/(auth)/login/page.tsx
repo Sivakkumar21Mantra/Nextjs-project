@@ -20,7 +20,7 @@ import { bgGradient } from "../../../../src/theme/css";
 import Logo from "../../../../src/components/logo";
 import Iconify from "../../../../src/components/iconify";
 import { authService } from "@/app/_service/authService";
-import CustomDialog from "@/components/CustomDialog";
+import CustomDialog from "@/components/customDialogModal/CustomDialog";
 
 const login = () => {
   var email: string = "";
