@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 import Box from "@mui/material/Box";
@@ -20,11 +20,15 @@ import { bgGradient } from "../../../../src/theme/css";
 import Logo from "../../../../src/components/logo";
 import Iconify from "../../../../src/components/iconify";
 import { authService } from "@/app/_service/authService";
+import CustomDialog from "@/components/CustomDialog";
 
 const login = () => {
   var email: string = "";
-
   var password: string = "";
+  const [openDg, setOpenDg] = useState(false);
+
+  const [dialogName, setDialogName] = useState("");
+  const [customClass, setCustomClas] = useState("");
 
   var obj = {
     email: "",
@@ -43,11 +47,19 @@ const login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClick = () => {
-    console.log(obj);
-    // authService(email, password);
+    // console.log(obj);
+    authService(email, password);
 
     //   router.push('/dashboard');
   };
+  const openDialog = (dgName: string, customClass: string) => {
+    setOpenDg(true);
+    setDialogName(dgName);
+    setCustomClas(customClass);
+  };
+  function handleClose() {
+    setOpenDg(false);
+  }
 
   const renderForm = (
     <>
@@ -99,6 +111,24 @@ const login = () => {
       >
         Login
       </LoadingButton>
+      <Button onClick={() => openDialog("default", "bg-red-700")}>
+        Open Dialog
+      </Button>
+      <Button onClick={() => openDialog("form-dialog", "bg-blue-700")}>
+        Form Dialog
+      </Button>
+      <CustomDialog
+        _isOpen={openDg}
+        handleClose={handleClose}
+        dialogName={dialogName}
+        customStyle={customClass}
+      />
+      <CustomDialog
+        _isOpen={openDg}
+        handleClose={handleClose}
+        dialogName={dialogName}
+        customStyle={customClass}
+      />
     </>
   );
 
