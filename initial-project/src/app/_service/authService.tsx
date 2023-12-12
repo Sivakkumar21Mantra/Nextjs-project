@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 
 export const authService = (email: string, pwd: string) => {
   axios
-    .get("https://jsonplaceholder.typicode.com/todos/1")
+    .get("https://jsonplaceholder.typicode.com/to1dos/1")
     .then((response) => {
       console.log(response);
     })
