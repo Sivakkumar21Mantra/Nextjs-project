@@ -1,11 +1,9 @@
 import { Button, Dialog } from "@mui/material";
-import { Prosto_One } from "next/font/google";
 import React from "react";
-import { isDOMComponent } from "react-dom/test-utils";
+import "./customDialog.css";
 
 const CustomDialog = (props: any) => {
   const openCustomDialog = () => {
-    console.log(props.dialogName);
     switch (props.dialogName) {
       case "form-dialog":
         return (
@@ -32,6 +30,7 @@ const CustomDialog = (props: any) => {
       fullWidth
       maxWidth="sm"
       open={props._isOpen}
+      // disableEscapeKeyDown={true}
       onClose={props.handleClose}
     >
       {openCustomDialog()}

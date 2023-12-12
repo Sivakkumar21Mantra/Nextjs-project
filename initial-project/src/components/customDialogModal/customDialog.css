@@ -1,0 +1,9 @@
+.default-dialog {
+  height: 90vh;
+  background-color: antiquewhite;
+}
+
+.form-dialog {
+  height: 50vh;
+  background-color: rgb(153, 195, 110);
+}

@@ -12,7 +12,6 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { alpha, useTheme } from "@mui/material/styles";
-import InputAdornment from "@mui/material/InputAdornment";
 
 // import { useRouter } from "src/routes/hooks";
 
@@ -57,7 +56,8 @@ const login = () => {
     setDialogName(dgName);
     setCustomClas(customClass);
   };
-  function handleClose() {
+  function handleClose(event: any, reason: any) {
+    if (reason === "backdropClick") return;
     setOpenDg(false);
   }
 
@@ -111,10 +111,10 @@ const login = () => {
       >
         Login
       </LoadingButton>
-      <Button onClick={() => openDialog("default", "bg-red-700")}>
+      <Button onClick={() => openDialog("default", "default-dialog")}>
         Open Dialog
       </Button>
-      <Button onClick={() => openDialog("form-dialog", "bg-blue-700")}>
+      <Button onClick={() => openDialog("form-dialog", "form-dialog")}>
         Form Dialog
       </Button>
       <CustomDialog
