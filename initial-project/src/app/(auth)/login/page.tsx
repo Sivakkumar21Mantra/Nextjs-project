@@ -26,6 +26,7 @@ const login = () => {
   var password: string = "";
   const router = useRouter();
   const [openDg, setOpenDg] = useState(false);
+  const [isLoading, setisLoading] = useState(false);
 
   const [dialogName, setDialogName] = useState("");
   const [customClass, setCustomClas] = useState("");
@@ -47,12 +48,17 @@ const login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClick = async () => {
+    setisLoading(true);
     const res = await authService(email, password)
       .then((res) => {
+        setisLoading(false);
         console.log(res);
         router.push("/details");
       })
-      .catch((err) => router.push("/pagenotfound"));
+      .catch((err) => {
+        setisLoading(false);
+        router.push("/pagenotfound");
+      });
 
     //   router.push('/dashboard');
   };
@@ -111,8 +117,10 @@ const login = () => {
         size="large"
         type="submit"
         variant="contained"
-        color="inherit"
+        sx={{ backgroundColor: "blue" }}
+        color="primary"
         onClick={handleClick}
+        loading={isLoading}
       >
         Login
       </LoadingButton>
