@@ -1,13 +1,15 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
+import axiosInterceptorInstance from "./axiosInterceptorInstance";
+
 export const authService = (email: string, pwd: string) => {
-  axios
-    .get("https://jsonplaceholder.typicode.com/to1dos/1")
-    .then((response) => {
+  axiosInterceptorInstance
+    .get("https://jsonplaceholder.typicode.com/todos/1")
+    .then((response: any) => {
       console.log(response);
     })
-    .catch((err) => {
+    .catch((err: any) => {
       Swal.fire(err.message);
     });
 };
