@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { ChildComponent } from "./ChildComponent";
 
-function ToDoList() {
+function ToDoList(props) {
   const [listItems, setListItem] = useState([]);
   const [task, setTask] = useState("");
   function handleChange(event) {
@@ -31,6 +32,7 @@ function ToDoList() {
           ))}
         </ul>
       </div>
+      <ChildComponent msg={props.msg} />
     </div>
   );
 }
