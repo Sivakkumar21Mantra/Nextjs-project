@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Card from "@mui/material/Card";
@@ -24,6 +24,7 @@ import CustomDialog from "@/components/customDialogModal/CustomDialog";
 const login = () => {
   var email: string = "";
   var password: string = "";
+  const router = useRouter();
   const [openDg, setOpenDg] = useState(false);
 
   const [dialogName, setDialogName] = useState("");
@@ -45,9 +46,13 @@ const login = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleClick = () => {
-    // console.log(obj);
-    authService(email, password);
+  const handleClick = async () => {
+    const res = await authService(email, password)
+      .then((res) => {
+        console.log(res);
+        router.push("/details");
+      })
+      .catch((err) => router.push("/pagenotfound"));
 
     //   router.push('/dashboard');
   };
